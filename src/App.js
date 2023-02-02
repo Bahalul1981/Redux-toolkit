@@ -1,23 +1,19 @@
-import logo from './logo.svg';
-import './App.css';
-
+import "./App.css";
+import { useDispatch, useSelector } from "react-redux";
+import Arvid from "./Arvid";
+import { newState } from "./store/slicer/slicer";
 function App() {
+  const dispatch = useDispatch();
+  const dataFromStore = useSelector((dataCheck) => {
+    return dataCheck.show.value;
+  });
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Welcome to Redux-toolkit</h1>
+      <h2>{dataFromStore}</h2>
+      <button onClick={() => dispatch(newState())}>Add</button>
+      <Arvid />
     </div>
   );
 }
